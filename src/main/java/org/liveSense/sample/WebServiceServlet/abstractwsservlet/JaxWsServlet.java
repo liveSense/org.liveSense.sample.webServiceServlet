@@ -1,4 +1,4 @@
-package org.liveSense.sample.WebServiceServlet;
+package org.liveSense.sample.WebServiceServlet.abstractwsservlet;
 
 import javax.jws.WebService;
 
@@ -8,6 +8,8 @@ import org.apache.felix.scr.annotations.Properties;
 import org.apache.felix.scr.annotations.Property;
 import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.commons.osgi.PropertiesUtil;
+import org.liveSense.sample.WebServiceServlet.HelloBean;
+import org.liveSense.sample.WebServiceServlet.JaxWsServiceInterface;
 import org.liveSense.service.cxf.AbstractJaxWsServer;
 import org.osgi.service.component.ComponentContext;
 import org.slf4j.Logger;
@@ -16,11 +18,12 @@ import org.slf4j.LoggerFactory;
 
 @Component(metatype = false, inherit = true, immediate = true)
 @Service(value = javax.servlet.Servlet.class)
+
 @Properties(value = { 
 	@Property(name = "sling.servlet.paths", value = "/webservices/jaxwsservlet"),
 	@Property(name = "sling.servlet.methods", value = { "GET", "POST" }) })
 @SuppressWarnings({ "serial", "restriction" })
-@WebService(targetNamespace = "http://org.liveSense.sample.webserviceservlet", name = "JaxWsService")
+@WebService
 public class JaxWsServlet extends AbstractJaxWsServer implements JaxWsServiceInterface {
 	private final static String NAME_SPACE = "http://webserviceservlet.sample.liveSense.org";
 	private final static String PACKAGE = "org.liveSense.sample.webserviceservlet";
@@ -63,6 +66,7 @@ public class JaxWsServlet extends AbstractJaxWsServer implements JaxWsServiceInt
 
 
 	// PUBLIC METHODS
+	@Override
 	public HelloBean helloWorld(
 		String name)
 		throws Exception {

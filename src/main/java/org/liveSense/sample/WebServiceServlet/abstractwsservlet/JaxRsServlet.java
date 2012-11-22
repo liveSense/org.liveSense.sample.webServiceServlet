@@ -1,4 +1,4 @@
-package org.liveSense.sample.WebServiceServlet;
+package org.liveSense.sample.WebServiceServlet.abstractwsservlet;
 
 import org.apache.felix.scr.annotations.Activate;
 import org.apache.felix.scr.annotations.Component;
@@ -6,6 +6,8 @@ import org.apache.felix.scr.annotations.Properties;
 import org.apache.felix.scr.annotations.Property;
 import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.commons.osgi.PropertiesUtil;
+import org.liveSense.sample.WebServiceServlet.HelloBean;
+import org.liveSense.sample.WebServiceServlet.JaxRsServiceInterface;
 import org.liveSense.service.cxf.AbstractJaxRsServer;
 import org.osgi.service.component.ComponentContext;
 import org.slf4j.Logger;
@@ -14,6 +16,7 @@ import org.slf4j.LoggerFactory;
 
 @Component(metatype = false, inherit = true, immediate = true)
 @Service(value = javax.servlet.Servlet.class)
+
 @Properties(value = { 
 	@Property(name = "sling.servlet.paths", value = "/webservices/jaxrsservlet"),
 	@Property(name = "sling.servlet.methods", value = { "GET", "POST" }) })
@@ -58,6 +61,7 @@ public class JaxRsServlet extends AbstractJaxRsServer implements JaxRsServiceInt
 
 
 	// PUBLIC METHODS
+	@Override
 	public HelloBean helloWorld(
 		String name)
 		throws Exception {

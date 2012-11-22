@@ -1,4 +1,4 @@
-package org.liveSense.sample.WebServiceServlet;
+package org.liveSense.sample.WebServiceServlet.abstractwsservlet;
 
 import org.apache.felix.scr.annotations.Activate;
 import org.apache.felix.scr.annotations.Component;
@@ -6,11 +6,12 @@ import org.apache.felix.scr.annotations.Properties;
 import org.apache.felix.scr.annotations.Property;
 import org.apache.felix.scr.annotations.Service;
 import org.apache.sling.commons.osgi.PropertiesUtil;
+import org.liveSense.sample.WebServiceServlet.AegisServiceInterface;
+import org.liveSense.sample.WebServiceServlet.HelloBean;
 import org.liveSense.service.cxf.AbstractAegisWsServer;
 import org.osgi.service.component.ComponentContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 
 @Component(metatype = true, inherit = true, immediate = true)
 @Service(value = javax.servlet.Servlet.class)
@@ -18,9 +19,9 @@ import org.slf4j.LoggerFactory;
 	@Property(name = "sling.servlet.paths", value = "/webservices/aegisservlet"),
 	@Property(name = "sling.servlet.methods", value = { "GET", "POST" }) })
 @SuppressWarnings({ "serial" })
-public class AegisServlet extends AbstractAegisWsServer implements ServiceInterface {
+public class AegisServlet extends AbstractAegisWsServer implements AegisServiceInterface {
 
-	private static Logger log = LoggerFactory.getLogger(JaxWsServlet.class);
+	private static Logger log = LoggerFactory.getLogger(AegisServlet.class);
 
 	/**
 	 * This is the OSGi component/service activation method. It initializes this
@@ -53,11 +54,12 @@ public class AegisServlet extends AbstractAegisWsServer implements ServiceInterf
 	@SuppressWarnings("rawtypes")
 	@Override
 	protected Class getServerInterfaceType() {
-		return ServiceInterface.class;
+		return AegisServiceInterface.class;
 	}
 
 
 	// PUBLIC METHODS
+	@Override
 	public HelloBean helloWorld(
 		String name)
 		throws Exception {
