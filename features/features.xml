@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><features name="liveSense-${liveSense.version}-sample-webServiceServlet" xmlns="http://karaf.apache.org/xmlns/features/v1.0.0">
+	<feature name="liveSense-sample-webServiceServlet" version="${liveSense.sample.webServiceServlet.version}" description="liveSense sample webServiceServlet">
+        <feature>liveSense-service-cxf</feature>
+		<bundle>mvn:com.github.livesense/org.liveSense.sample.webServiceServlet/${liveSense.sample.webServiceServlet.version}</bundle>
+	</feature>
+</features>
